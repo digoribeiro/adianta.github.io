@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --orange: #E8520A;
+      --orange-light: #FDF0E8;
+      --orange-mid: #F4874A;
+      --dark: #1A1612;
+      --mid: #4A3F35;
+      --muted: #9A8F85;
+      --border: rgba(74, 63, 53, 0.12);
+      --surface: #FDFBF8;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--dark);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 251, 248, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--orange);
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.88;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      background: var(--orange-light);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--mid);
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      font-weight: 300;
+    }
+
+    .hero-sub strong {
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .proof-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .proof-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange-mid);
+      flex-shrink: 0;
+    }
+
+    .divider {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+    }
+
+    .how-section {
+      background: var(--dark);
+      color: white;
+      padding: 80px 5%;
+    }
+
+    .how-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange-mid);
+      margin-bottom: 16px;
+    }
+
+    .how-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 56px;
+      color: white;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .step {
+      background: #221E1A;
+      padding: 36px 28px;
+    }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--orange-mid);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: white;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.7;
+    }
+
+    .why-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 0;
+    }
+
+    .why-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .why-section h2 em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .why-sub {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 48px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .compare-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .compare-table td {
+      padding: 16px;
+      border-bottom: 0.5px solid var(--border);
+      color: var(--mid);
+    }
+
+    .compare-table tr.highlight td {
+      background: var(--orange-light);
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .compare-table tr.highlight td:first-child {
+      color: var(--orange);
+      border-radius: 8px 0 0 8px;
+    }
+
+    .compare-table tr.highlight td:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+
+    .tag-green {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #1A6640;
+      background: #E8F5EE;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+
+    .tag-red {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #8B2A2A;
+      background: #FBECEC;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+
+    .form-section {
+      background: var(--orange);
+      padding: 80px 5%;
+    }
+
+    .form-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .form-section .section-label {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(30px, 4vw, 44px);
+      color: white;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .form-section h2 em {
+      font-style: italic;
+    }
+
+    .form-desc {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 15px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.04em;
+    }
+
+    .form-field input,
+    .form-field select {
+      background: rgba(255, 255, 255, 0.12);
+      border: 0.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: white;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-field input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .form-field select option {
+      color: var(--dark);
+      background: white;
+    }
+
+    .form-field select {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-field select.selected {
+      color: white;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: white;
+      color: var(--orange);
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.92;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    .form-footnote {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .success-state {
+      text-align: center;
+      padding: 40px 0;
+      display: none;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+    }
+
+    .success-state h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .success-state p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+    }
+
+    footer {
+      padding: 32px 5%;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--orange);
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-strip {
+        gap: 14px;
+      }
+
+      .divider {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">adianta</div>
+    <button class="nav-cta" onclick="document.getElementById('form-anchor').scrollIntoView({behavior:'smooth'})">Quero
+      antecipar</button>
+  </nav>
+
+  <section>
+    <div class="hero">
+      <span class="eyebrow">Para freelas e creators cansados de esperar</span>
+      <h1 class="serif">Terminou o projeto.<br><em>Receba agora.</em><br>Não em 90 dias.</h1>
+      <p class="hero-sub">A Adianta coloca o dinheiro do seu projeto na sua conta via PIX — assim que o projeto é
+        entregue. Sem burocracia, sem análise de CPF.</p>
+      <div class="proof-strip">
+        <div class="proof-item">
+          <div class="proof-dot"></div>2,99% flat por operação
+        </div>
+        <div class="divider"></div>
+        <div class="proof-item">
+          <div class="proof-dot"></div>Sem análise de CPF
+        </div>
+        <div class="divider"></div>
+        <div class="proof-item">
+          <div class="proof-dot"></div>PIX na hora
+        </div>
+        <div class="divider"></div>
+        <div class="proof-item">
+          <div class="proof-dot"></div>Sem mensalidade
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="how-section">
+    <div class="how-inner">
+      <div class="section-label">Como funciona</div>
+      <h2 class="serif">Três passos e o dinheiro<br>já está na sua conta.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Você pede</h3>
+          <p>Manda o valor do projeto, os dados da empresa que te contratou e a nota fiscal. É só isso.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>A gente confirma</h3>
+          <p>Falamos diretamente com o financeiro da empresa para confirmar que o pagamento existe.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Cai no PIX</h3>
+          <p>Aprovado, o dinheiro vai pra sua conta na hora. A empresa paga pra Adianta na data combinada, você não
+            precisa fazer mais nada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="why-section">
+      <div class="section-label">Por que a Adianta</div>
+      <h2 class="serif">Muito mais barato do que qualquer<br><em>opção que você tem hoje.</em></h2>
+      <p class="why-sub">Quanto custa antecipar R$ 10.000 em 30 dias em cada alternativa.</p>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Alternativa</th>
+            <th>Custo em 30 dias</th>
+            <th>Funciona pra freela?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td>Adianta</td>
+            <td>2,99% flat = R$ 299</td>
+            <td><span class="tag-green">✓ Sempre</span></td>
+          </tr>
+          <tr>
+            <td>Cartão de crédito</td>
+            <td>~12% a.m. = R$ 1.200</td>
+            <td><span class="tag-red">✗ Difícil aprovar</span></td>
+          </tr>
+          <tr>
+            <td>Empréstimo pessoal (fintech)</td>
+            <td>7–15% a.m. = R$ 700–1.500</td>
+            <td><span class="tag-red">✗ Renda irregular barra</span></td>
+          </tr>
+          <tr>
+            <td>Antecipação bancária (PJ)</td>
+            <td>3–6% a.m.</td>
+            <td><span class="tag-red">✗ Exige conta PJ + análise</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="form-section" id="form-anchor">
+    <div class="form-inner">
+      <div class="section-label">Acesso antecipado</div>
+      <h2 class="serif">Quer ser um dos<br><em>primeiros?</em></h2>
+      <p class="form-desc">Estamos abrindo em fases. Deixa seus dados e a gente avisa assim que sua vez chegar.</p>
+
+      <div id="form-container">
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Nome completo</label>
+            <input type="text" id="f-name" placeholder="Seu nome" />
+          </div>
+          <div class="form-field">
+            <label>WhatsApp</label>
+            <input type="tel" id="f-phone" placeholder="(11) 99999-9999" />
+          </div>
+          <div class="form-field full">
+            <label>E-mail</label>
+            <input type="email" id="f-email" placeholder="voce@email.com" />
+          </div>
+          <div class="form-field">
+            <label>Área de atuação</label>
+            <select id="f-area" onchange="this.classList.add('selected')">
+              <option value="" disabled selected>Selecione</option>
+              <option>Creators / Influencers</option>
+              <option>Design & UX</option>
+              <option>Desenvolvimento</option>
+              <option>Marketing & Conteúdo</option>
+              <option>Fotografia & Vídeo</option>
+              <option>Consultoria</option>
+              <option>Tradução & Revisão</option>
+              <option>Outra</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Valor médio por projeto</label>
+            <select id="f-range" onchange="this.classList.add('selected')">
+              <option value="" disabled selected>Selecione</option>
+              <option>Até R$ 1.000</option>
+              <option>R$ 1.000 – R$ 2.500</option>
+              <option>R$ 2.500 – R$ 5.000</option>
+              <option>R$ 5.000 – R$ 10.000</option>
+              <option>R$ 10.000 – R$ 20.000</option>
+              <option>R$ 20.000 – R$ 50.000</option>
+              <option>Acima de R$ 50.000</option>
+            </select>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="handleSubmit()">Quero acesso antecipado →</button>
+        <p class="form-footnote">Sem spam. A gente só fala quando tiver novidade de verdade.</p>
+      </div>
+
+      <div class="success-state" id="success-state">
+        <div class="success-icon">✓</div>
+        <h3>Feito!</h3>
+        <p>A gente avisa assim que sua vaga estiver disponível. Fica de olho no e-mail e no WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">adianta</div>
+    <div class="footer-note">Antecipamos os pagamentos de freelas e creators. Adianta, São Paulo, Brasil.</div>
+  </footer>
+
+  <script>
+    document.getElementById('f-phone').addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length > 10) {
+        v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+      } else if (v.length > 6) {
+        v = v.replace(/^(\d{2})(\d{4,5})(\d{0,4})/, '($1) $2-$3');
+      } else if (v.length > 2) {
+        v = v.replace(/^(\d{2})(\d+)/, '($1) $2');
+      } else if (v.length > 0) {
+        v = v.replace(/^(\d+)/, '($1');
+      }
+      e.target.value = v;
+    });
+
+    const emailInput = document.getElementById('f-email');
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    }
+
+    function setEmailError(show) {
+      emailInput.style.borderColor = show ? 'rgba(255,255,255,0.7)' : '';
+      let msg = document.getElementById('email-error');
+      if (show) {
+        if (!msg) {
+          msg = document.createElement('span');
+          msg.id = 'email-error';
+          msg.style.cssText = 'font-size:11px;color:rgba(255,255,255,0.75);margin-top:2px;';
+          emailInput.parentNode.appendChild(msg);
+        }
+        msg.textContent = 'Digite um e-mail válido.';
+      } else if (msg) {
+        msg.remove();
+      }
+    }
+
+    emailInput.addEventListener('blur', function () {
+      const v = emailInput.value.trim();
+      if (v) setEmailError(!isValidEmail(v));
+    });
+
+    emailInput.addEventListener('input', function () {
+      if (document.getElementById('email-error')) setEmailError(!isValidEmail(emailInput.value.trim()));
+    });
+
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwfl8Bu9oyOcmX2pQ2PWtfVUxFssazLR8crLH26Elz481teNDsyvgN7rRX5TRu4AyyybQ/exec';
+
+    async function handleSubmit() {
+      const name = document.getElementById('f-name').value.trim();
+      const email = emailInput.value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const area = document.getElementById('f-area').value;
+      const range = document.getElementById('f-range').value;
+
+      if (!name || !email || !phone || !area || !range) {
+        document.querySelectorAll('#form-container input, #form-container select').forEach(el => {
+          if (!el.value) { el.style.borderColor = 'rgba(255,255,255,0.7)'; setTimeout(() => el.style.borderColor = '', 1800); }
+        });
+        return;
+      }
+      if (!isValidEmail(email)) {
+        setEmailError(true);
+        emailInput.focus();
+        return;
+      }
+      setEmailError(false);
+
+      const btn = document.querySelector('.submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, area, range }),
+        });
+      } catch (_) {
+        // no-cors não lança erro em caso de sucesso; falhas de rede chegam aqui
+      }
+
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
